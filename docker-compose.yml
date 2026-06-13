@@ -11,10 +11,11 @@ services:
   detector:
     build: ./detector
     container_name: lab_detector
-    # To monitor the victim's traffic, we share its network namespace
     network_mode: "service:victim"
     depends_on:
       - victim
+    volumes:
+      - alert_logs:/app/logs
 
   attacker:
     build: ./attacker
@@ -22,9 +23,19 @@ services:
     networks:
       lab_net:
         ipv4_address: 10.0.0.10
-    # Keep the container running in the background so we can use it
     stdin_open: true 
     tty: true
+
+  dashboard:
+    build: ./dashboard
+    container_name: lab_dashboard
+    ports:
+      - "8080:80"
+    networks:
+      lab_net:
+        ipv4_address: 10.0.0.15
+    volumes:
+      - alert_logs:/usr/share/nginx/html/logs
 
 networks:
   lab_net:
@@ -32,3 +43,6 @@ networks:
     ipam:
       config:
         - subnet: 10.0.0.0/24
+
+volumes:
+  alert_logs:
