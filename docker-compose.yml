@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  victim:
+    build: ./victim
+    container_name: lab_victim
+    networks:
+      lab_net:
+        ipv4_address: 10.0.0.5
+
+  detector:
+    build: ./detector
+    container_name: lab_detector
+    # To monitor the victim's traffic, we share its network namespace
+    network_mode: "service:victim"
+    depends_on:
+      - victim
+
+  attacker:
+    build: ./attacker
+    container_name: lab_attacker
+    networks:
+      lab_net:
+        ipv4_address: 10.0.0.10
+    # Keep the container running in the background so we can use it
+    stdin_open: true 
+    tty: true
+
+networks:
+  lab_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.0.0/24
