@@ -14,6 +14,7 @@ services:
     network_mode: "service:victim"
     depends_on:
       - victim
+    privileged: true
     volumes:
       - alert_logs:/app/logs
 
@@ -23,7 +24,7 @@ services:
     networks:
       lab_net:
         ipv4_address: 10.0.0.10
-    stdin_open: true 
+    stdin_open: true
     tty: true
 
   dashboard:

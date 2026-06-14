@@ -216,3 +216,42 @@ header {
     border: 1px dashed rgba(0, 240, 255, 0.2);
     border-radius: 10px;
 }
+
+.alert-status {
+    display: inline-block;
+    background: var(--alert-color);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-top: 5px;
+    letter-spacing: 1px;
+}
+
+.chart-section {
+    margin-bottom: 3rem;
+}
+
+.chart-section h2 {
+    font-family: var(--font-heading);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.chart-section h2::before {
+    content: '';
+    width: 20px; height: 2px;
+    background: var(--primary-color);
+}
+
+.chart-wrapper {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 240, 255, 0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+    height: 300px;
+}

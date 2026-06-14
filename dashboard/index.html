@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detection Engineering Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -33,6 +34,13 @@
                 <div class="stat-card">
                     <h3>System Status</h3>
                     <p class="status-ok">Secure</p>
+                </div>
+            </div>
+
+            <div class="chart-section">
+                <h2>Threat Activity Timeline</h2>
+                <div class="chart-wrapper">
+                    <canvas id="activityChart"></canvas>
                 </div>
             </div>
 
